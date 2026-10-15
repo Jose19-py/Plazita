@@ -1,0 +1,65 @@
+export type Emprendimiento = {
+  id: string;
+  user_id: string;
+  nombre: string;
+  slug: string;
+  descripcion: string | null;
+  categoria: string | null;
+  ciudad: string | null;
+  whatsapp: string | null;
+  logo_url: string | null;
+  portada_url: string | null;
+  created_at: string;
+};
+
+export type Producto = {
+  id: string;
+  emprendimiento_id: string;
+  nombre: string;
+  descripcion: string | null;
+  precio: number | null;
+  imagen_url: string | null;
+  created_at: string;
+};
+
+export const CATEGORIAS = [
+  "Comida y bebidas",
+  "Moda y accesorios",
+  "Belleza y cuidado personal",
+  "Hogar y decoración",
+  "Tecnología",
+  "Servicios profesionales",
+  "Educación y cursos",
+  "Arte y manualidades",
+  "Salud y bienestar",
+  "Otros",
+];
+
+export function formatPrecio(precio: number | null): string {
+  if (precio === null || precio === undefined) return "Consultar precio";
+  return new Intl.NumberFormat("es-CO", {
+    style: "currency",
+    currency: "COP",
+    maximumFractionDigits: 0,
+  }).format(precio);
+}
+
+export function slugify(texto: string): string {
+  const base = texto
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 50);
+  const sufijo = Math.random().toString(36).slice(2, 6);
+  return `${base || "emprendimiento"}-${sufijo}`;
+}
+
+export function whatsappLink(numero: string | null, mensaje: string): string | null {
+  if (!numero) return null;
+  let digitos = numero.replace(/\D/g, "");
+  if (digitos.length === 10) digitos = `57${digitos}`; // Colombia por defecto
+  if (!digitos) return null;
+  return `https://wa.me/${digitos}?text=${encodeURIComponent(mensaje)}`;
+}
