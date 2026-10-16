@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { createClient } from "@/lib/supabase/server";
 import { formatPrecio, whatsappLink, type Emprendimiento, type Producto } from "@/lib/types";
+import BotonCompartir from "@/components/BotonCompartir";
 
 export const dynamic = "force-dynamic";
 
@@ -84,11 +85,14 @@ export default async function PerfilEmprendimiento({ params }: Props) {
               {[emp.categoria, emp.ciudad].filter(Boolean).join(" · ")}
             </p>
           </div>
-          {contacto && (
-            <a href={contacto} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-              Contactar por WhatsApp
-            </a>
-          )}
+          <div className="flex flex-wrap items-center gap-2">
+            <BotonCompartir slug={emp.slug} nombre={emp.nombre} />
+            {contacto && (
+              <a href={contacto} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+                Contactar por WhatsApp
+              </a>
+            )}
+          </div>
         </div>
 
         {emp.descripcion && (

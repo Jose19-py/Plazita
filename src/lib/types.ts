@@ -63,3 +63,14 @@ export function whatsappLink(numero: string | null, mensaje: string): string | n
   if (!digitos) return null;
   return `https://wa.me/${digitos}?text=${encodeURIComponent(mensaje)}`;
 }
+
+export function getSiteUrl(): string {
+  if (typeof process.env.NEXT_PUBLIC_SITE_URL === "string" && process.env.NEXT_PUBLIC_SITE_URL.trim()) {
+    return process.env.NEXT_PUBLIC_SITE_URL.trim().replace(/\/+$/, "");
+  }
+  if (typeof window !== "undefined" && window.location?.origin) {
+    return window.location.origin.replace(/\/+$/, "");
+  }
+  return "https://plazita.vercel.app";
+}
+
