@@ -1,5 +1,5 @@
 -- =====================================================================
--- Plataforma web para emprendimientos - Esquema de base de datos
+-- Plazita: Plataforma web para emprendimientos - Esquema de base de datos
 -- Pega este archivo completo en Supabase → SQL Editor → Run
 -- =====================================================================
 

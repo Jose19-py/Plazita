@@ -1,4 +1,4 @@
-# Guía para continuar el proyecto en Antigravity
+# Plazita · Guía para continuar el proyecto en Antigravity
 
 ## Cómo empezar
 1. Descomprime el zip y abre la carpeta `emprendimientos` en Antigravity (**File → Open Folder**).

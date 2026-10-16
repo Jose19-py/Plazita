@@ -26,10 +26,10 @@ async function cargar(slug: string) {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const datos = await cargar(slug);
-  if (!datos) return { title: "Emprendimiento no encontrado · EmprendeHub" };
+  if (!datos) return { title: "Emprendimiento no encontrado · Plazita" };
   
-  const titulo = `${datos.emp.nombre} · EmprendeHub`;
-  const descripcion = datos.emp.descripcion?.slice(0, 160) ?? `Conoce ${datos.emp.nombre} en EmprendeHub.`;
+  const titulo = `${datos.emp.nombre} · Plazita`;
+  const descripcion = datos.emp.descripcion?.slice(0, 160) ?? `Conoce ${datos.emp.nombre} en Plazita.`;
   const imagen = datos.emp.portada_url || datos.emp.logo_url || null;
 
   return {
@@ -57,7 +57,7 @@ export default async function PerfilEmprendimiento({ params }: Props) {
   if (!datos) notFound();
   const { emp, productos } = datos;
 
-  const contacto = whatsappLink(emp.whatsapp, `Hola, vi ${emp.nombre} en EmprendeHub y quiero más información.`);
+  const contacto = whatsappLink(emp.whatsapp, `Hola, vi ${emp.nombre} en Plazita y quiero más información.`);
 
   return (
     <div>

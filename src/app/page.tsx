@@ -19,7 +19,7 @@ export default async function Home() {
       <section className="bg-ink text-white">
         <div className="mx-auto max-w-6xl px-4 py-20 text-center sm:py-28">
           <h1 className="mx-auto max-w-3xl text-4xl font-bold tracking-tight sm:text-6xl">
-            Tu emprendimiento merece su <span className="text-brand">propio espacio</span>
+            Tu emprendimiento merece su propia <span className="text-brand">plazita</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-zinc-300">
             Crea gratis el perfil de tu negocio, publica tu catálogo con precios y deja que

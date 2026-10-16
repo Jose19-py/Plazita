@@ -1,7 +1,7 @@
 # Contexto del proyecto para agentes
 
 ## Qué es
-EmprendeHub: plataforma web donde cualquier emprendimiento crea su propio espacio (perfil + catálogo con precios) y los visitantes lo exploran y contactan por WhatsApp. Proyecto académico de Desarrollo de software (Corporación Bolivariana del Norte), desarrollado por una sola persona.
+Plazita: plataforma web donde cualquier emprendimiento crea su propio espacio (perfil + catálogo con precios) y los visitantes lo exploran y contactan por WhatsApp. Proyecto académico de Desarrollo de software (Corporación Bolivariana del Norte), desarrollado por una sola persona.
 
 ## Stack
 Next.js 15 (App Router, TypeScript) · Tailwind CSS 4 · Supabase (PostgreSQL, Auth, Storage) · despliegue en Vercel. Idioma de la interfaz: español (Colombia). Moneda: COP.

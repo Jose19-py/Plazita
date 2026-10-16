@@ -1,4 +1,4 @@
-# EmprendeHub · Plataforma web para emprendimientos
+# Plazita · Plataforma web para emprendimientos
 
 Cada emprendedor crea su cuenta, su emprendimiento y un catálogo de productos con precios. Cualquier visitante puede explorar, buscar y contactar por WhatsApp.
 
