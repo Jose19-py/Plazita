@@ -56,4 +56,4 @@ supabase/schema.sql         Tablas, seguridad (RLS) y almacenamiento
 ## Seguridad
 - Las contraseñas las gestiona Supabase Auth (cifradas).
 - Las reglas RLS de `schema.sql` garantizan que solo el dueño puede crear, editar o borrar su emprendimiento, sus productos y sus imágenes.
-- Solo se usa la clave `anon` en el proyecto; nunca pegues la `service_role` en el código.
+
