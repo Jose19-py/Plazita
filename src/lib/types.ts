@@ -1,3 +1,5 @@
+export type EstadoEmprendimiento = "activo" | "oculto";
+
 export type Emprendimiento = {
   id: string;
   user_id: string;
@@ -9,8 +11,25 @@ export type Emprendimiento = {
   whatsapp: string | null;
   logo_url: string | null;
   portada_url: string | null;
+  estado?: EstadoEmprendimiento;
   created_at: string;
 };
+
+export type Reporte = {
+  id: string;
+  emprendimiento_id: string;
+  motivo: string;
+  detalle: string | null;
+  correo_reportante: string | null;
+  resuelto: boolean;
+  created_at: string;
+  emprendimientos?: {
+    nombre: string;
+    slug: string;
+    estado?: EstadoEmprendimiento;
+  } | null;
+};
+
 
 export type Producto = {
   id: string;

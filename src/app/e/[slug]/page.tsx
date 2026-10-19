@@ -13,13 +13,19 @@ export default async function ShortUrlRedirect({ params, searchParams }: Props) 
   const sp = await searchParams;
 
   const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
   const { data: emp } = await supabase
     .from("emprendimientos")
-    .select("slug")
+    .select("slug, estado, user_id")
     .eq("slug", slug)
     .maybeSingle();
 
   if (!emp) {
+    notFound();
+  }
+
+  if (emp.estado === "oculto" && emp.user_id !== user?.id) {
     notFound();
   }
 

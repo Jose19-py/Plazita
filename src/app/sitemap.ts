@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
 import { createClient } from "@/lib/supabase/server";
+import { siteConfig } from "@/config/site";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://plazita.vercel.app";
+  const baseUrl = siteConfig.url;
 
   let emprendimientoUrls: MetadataRoute.Sitemap = [];
 

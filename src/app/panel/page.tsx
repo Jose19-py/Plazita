@@ -2,6 +2,8 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import type { Emprendimiento } from "@/lib/types";
+import CambiarClaveForm from "@/components/CambiarClaveForm";
+import EliminarCuentaBtn from "@/components/EliminarCuentaBtn";
 
 export const dynamic = "force-dynamic";
 
@@ -30,6 +32,10 @@ export default async function Panel() {
           + Crear emprendimiento
         </Link>
       </div>
+
+      <section className="mt-6">
+        <CambiarClaveForm />
+      </section>
 
       <div className="mt-8 space-y-3">
         {lista.length === 0 ? (
@@ -60,6 +66,16 @@ export default async function Panel() {
           ))
         )}
       </div>
+
+      <section className="mt-16 border-t border-zinc-200 pt-8">
+        <h2 className="text-sm font-semibold text-zinc-500">Zona de cuenta</h2>
+        <p className="mt-1 text-xs text-zinc-400">
+          Si deseas darte de baja definitivamente y suprimir tus datos personales de Plazita.
+        </p>
+        <div className="mt-3">
+          <EliminarCuentaBtn />
+        </div>
+      </section>
     </div>
   );
 }

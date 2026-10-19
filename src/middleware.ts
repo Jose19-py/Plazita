@@ -27,8 +27,12 @@ export async function middleware(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  // El panel es privado: solo usuarios con sesión
-  if (!user && request.nextUrl.pathname.startsWith("/panel")) {
+  // El panel y el módulo de administración son privados: solo usuarios con sesión
+  const esRutaPrivada =
+    request.nextUrl.pathname.startsWith("/panel") ||
+    request.nextUrl.pathname.startsWith("/admin");
+
+  if (!user && esRutaPrivada) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
     url.search = `?next=${encodeURIComponent(request.nextUrl.pathname)}`;

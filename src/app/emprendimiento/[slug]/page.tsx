@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { createClient } from "@/lib/supabase/server";
 import { formatPrecio, whatsappLink, type Emprendimiento, type Producto } from "@/lib/types";
 import BotonCompartir from "@/components/BotonCompartir";
+import ReportarBtn from "@/components/ReportarBtn";
+import { siteConfig } from "@/config/site";
 
 export const dynamic = "force-dynamic";
 
@@ -10,12 +12,21 @@ type Props = { params: Promise<{ slug: string }> };
 
 async function cargar(slug: string) {
   const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
   const { data: emp } = await supabase
     .from("emprendimientos")
     .select("*")
     .eq("slug", slug)
     .maybeSingle();
+
   if (!emp) return null;
+
+  // Si está oculto, únicamente el dueño del emprendimiento puede visualizarlo
+  if (emp.estado === "oculto" && emp.user_id !== user?.id) {
+    return null;
+  }
+
   const { data: prods } = await supabase
     .from("productos")
     .select("*")
@@ -27,9 +38,9 @@ async function cargar(slug: string) {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const datos = await cargar(slug);
-  if (!datos) return { title: "Emprendimiento no encontrado · Plazita" };
+  if (!datos) return { title: `Emprendimiento no encontrado · ${siteConfig.nombre}` };
   
-  const titulo = `${datos.emp.nombre} · Plazita`;
+  const titulo = `${datos.emp.nombre} · ${siteConfig.nombre}`;
   const descripcion = datos.emp.descripcion?.slice(0, 160) ?? `Conoce ${datos.emp.nombre} en Plazita.`;
   const imagen = datos.emp.portada_url || datos.emp.logo_url || null;
 
@@ -58,7 +69,7 @@ export default async function PerfilEmprendimiento({ params }: Props) {
   if (!datos) notFound();
   const { emp, productos } = datos;
 
-  const contacto = whatsappLink(emp.whatsapp, `Hola, vi ${emp.nombre} en Plazita y quiero más información.`);
+  const contacto = whatsappLink(emp.whatsapp, `Hola, vi ${emp.nombre} en ${siteConfig.nombre} y quiero más información.`);
 
   return (
     <div>
@@ -92,6 +103,7 @@ export default async function PerfilEmprendimiento({ params }: Props) {
                 Contactar por WhatsApp
               </a>
             )}
+            <ReportarBtn emprendimientoId={emp.id} nombreEmprendimiento={emp.nombre} />
           </div>
         </div>
 

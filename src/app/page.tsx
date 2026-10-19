@@ -10,6 +10,7 @@ export default async function Home() {
   const { data } = await supabase
     .from("emprendimientos")
     .select("*")
+    .eq("estado", "activo")
     .order("created_at", { ascending: false })
     .limit(6);
   const destacados = (data ?? []) as Emprendimiento[];

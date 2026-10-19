@@ -13,6 +13,7 @@ export default async function Explorar({ searchParams }: Props) {
   let consulta = supabase
     .from("emprendimientos")
     .select("*")
+    .eq("estado", "activo")
     .order("created_at", { ascending: false });
 
   const termino = q.replace(/[%,()]/g, " ").trim();
