@@ -9,12 +9,8 @@ export const metadata: Metadata = {
 export default function TerminosPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-16">
-      <div className="mb-6 rounded-lg border border-amber-300 bg-amber-50 p-4 text-xs text-amber-800">
-        <strong>BORRADOR INFORMATIVO:</strong> Reemplaza los campos entre corchetes <code>[...]</code> antes del lanzamiento formal a producción.
-      </div>
-
       <h1 className="text-3xl font-bold">Términos y Condiciones de Uso</h1>
-      <p className="mt-2 text-sm text-zinc-500">Última actualización: [Fecha de publicación]</p>
+      <p className="mt-2 text-sm text-zinc-500">Última actualización: 5 de noviembre de 2026</p>
 
       <div className="prose mt-8 space-y-6 text-sm leading-relaxed text-zinc-700">
         <section>
@@ -69,6 +65,9 @@ export default function TerminosPage() {
         <section>
           <h2 className="text-lg font-semibold text-ink">6. Modificaciones y Ley Aplicable</h2>
           <p>
+            Podemos actualizar estos términos para reflejar cambios en el servicio o en la normativa. La fecha de la última actualización aparece al inicio de esta página, y el uso continuado de la Plataforma después de un cambio implica su aceptación.
+          </p>
+          <p className="mt-2">
             Estos términos se rigen por las leyes de la República de Colombia. Cualquier diferencia será atendida preferentemente por arreglo directo entre las partes o ante las autoridades de {siteConfig.ciudad}, {siteConfig.pais}.
           </p>
         </section>

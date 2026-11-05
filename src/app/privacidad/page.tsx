@@ -9,12 +9,8 @@ export const metadata: Metadata = {
 export default function PrivacidadPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-16">
-      <div className="mb-6 rounded-lg border border-amber-300 bg-amber-50 p-4 text-xs text-amber-800">
-        <strong>BORRADOR INFORMATIVO:</strong> Modelo estructurado conforme a la Ley Estatutaria 1581 de 2012 de Colombia y Decreto 1377 de 2013. Completa los corchetes <code>[...]</code> con los datos definitivos antes del paso a producción.
-      </div>
-
       <h1 className="text-3xl font-bold">Política de Tratamiento y Protección de Datos Personales</h1>
-      <p className="mt-2 text-sm text-zinc-500">Última actualización: [Fecha de publicación]</p>
+      <p className="mt-2 text-sm text-zinc-500">Última actualización: 5 de noviembre de 2026</p>
 
       <div className="prose mt-8 space-y-6 text-sm leading-relaxed text-zinc-700">
         <section>
