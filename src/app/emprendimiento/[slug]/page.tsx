@@ -41,7 +41,7 @@ export default async function PerfilEmprendimiento({ params }: Props) {
   const datos = await cargar(slug);
   if (!datos) notFound();
   const { emp, productos } = datos;
-  const demo = "es_demo" in emp && emp.es_demo;
+  const demo = emp.id.startsWith("demo-");
   const contacto = whatsappLink(emp.whatsapp, `Hola, vi ${emp.nombre} en ${siteConfig.nombre} y quiero más información.`);
 
   return (
