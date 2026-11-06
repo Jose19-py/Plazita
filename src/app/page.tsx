@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import EmprendimientoCard from "@/components/EmprendimientoCard";
+import { emprendimientosDemo } from "@/lib/emprendimientos-demo";
 import type { Emprendimiento } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
@@ -13,7 +14,8 @@ export default async function Home() {
     .eq("estado", "activo")
     .order("created_at", { ascending: false })
     .limit(6);
-  const destacados = (data ?? []) as Emprendimiento[];
+  const reales = (data ?? []) as Emprendimiento[];
+  const destacados = [...reales, ...emprendimientosDemo].slice(0, 6);
 
   return (
     <>
@@ -27,16 +29,11 @@ export default async function Home() {
             tus clientes te escriban directo por WhatsApp. Sin conocimientos técnicos.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link href="/panel/nuevo" className="btn btn-primary !px-6 !py-3 text-base">
-              Crear emprendimiento
-            </Link>
-            <Link href="/explorar" className="btn !px-6 !py-3 text-base text-white ring-1 ring-white/30 hover:bg-white/10">
-              Explorar emprendimientos
-            </Link>
+            <Link href="/panel/nuevo" className="btn btn-primary !px-6 !py-3 text-base">Crear emprendimiento</Link>
+            <Link href="/explorar" className="btn !px-6 !py-3 text-base text-white ring-1 ring-white/30 hover:bg-white/10">Explorar emprendimientos</Link>
           </div>
         </div>
       </section>
-
       <section className="mx-auto max-w-6xl px-4 py-16">
         <div className="grid gap-8 sm:grid-cols-3">
           {[
@@ -51,25 +48,17 @@ export default async function Home() {
           ))}
         </div>
       </section>
-
-      <section className="mx-auto max-w-6xl px-4">
+      <section className="mx-auto max-w-6xl px-4 pb-16">
         <div className="mb-6 flex items-end justify-between">
-          <h2 className="text-2xl font-bold">Emprendimientos recientes</h2>
-          <Link href="/explorar" className="text-sm font-medium text-brand hover:underline">
-            Ver todos →
-          </Link>
-        </div>
-        {destacados.length === 0 ? (
-          <p className="rounded-xl border border-dashed border-zinc-300 p-10 text-center text-zinc-500">
-            Aún no hay emprendimientos publicados. ¡Sé el primero en crear el tuyo!
-          </p>
-        ) : (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {destacados.map((e) => (
-              <EmprendimientoCard key={e.id} e={e} />
-            ))}
+          <div>
+            <h2 className="text-2xl font-bold">Emprendimientos recientes</h2>
+            <p className="mt-1 text-sm text-zinc-500">Incluye perfiles ficticios para mostrar cómo funciona Plazita.</p>
           </div>
-        )}
+          <Link href="/explorar" className="text-sm font-medium text-brand hover:underline">Ver todos →</Link>
+        </div>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {destacados.map((e) => <EmprendimientoCard key={e.id} e={e} />)}
+        </div>
       </section>
     </>
   );
