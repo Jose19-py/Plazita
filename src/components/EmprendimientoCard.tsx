@@ -3,7 +3,7 @@ import type { Emprendimiento } from "@/lib/types";
 
 export default function EmprendimientoCard({ e }: { e: Emprendimiento }) {
   const imagen = e.portada_url || e.logo_url;
-  const demo = "es_demo" in e && e.es_demo;
+  const demo = e.id.startsWith("demo-");
 
   return (
     <Link href={`/emprendimiento/${e.slug}`} className="group overflow-hidden rounded-xl border border-zinc-200 bg-white transition hover:shadow-lg">
