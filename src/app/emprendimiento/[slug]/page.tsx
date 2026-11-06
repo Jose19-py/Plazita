@@ -79,7 +79,14 @@ export default async function PerfilEmprendimiento({ params }: Props) {
           <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {productos.map((p) => (
               <article key={p.id} className="overflow-hidden rounded-xl border border-zinc-200">
-                <div className="flex aspect-square items-center justify-center bg-gradient-to-br from-orange-50 to-teal-50 text-4xl text-brand/50">{p.nombre.charAt(0)}</div>
+                <div className="aspect-square overflow-hidden bg-gradient-to-br from-orange-50 to-teal-50">
+                  {p.imagen_url ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={p.imagen_url} alt={p.nombre} loading="lazy" className="h-full w-full object-cover" />
+                  ) : (
+                    <div className="flex h-full items-center justify-center text-4xl text-brand/50">{p.nombre.charAt(0)}</div>
+                  )}
+                </div>
                 <div className="p-4">
                   <h3 className="font-semibold">{p.nombre}</h3>
                   {p.descripcion && <p className="mt-1 line-clamp-3 text-sm text-zinc-600">{p.descripcion}</p>}
